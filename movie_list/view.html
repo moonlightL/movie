@@ -1,0 +1,25 @@
+<h1 class="page-header">{{title}}</h1>
+<h2 ng-if="message">{{message}}</h2>
+<div class="list-group">
+    <a href="#/detail/{{subject.id}}" class="list-group-item" ng-repeat="subject in subjects">
+        <span class="badge">{{subject.rating.average}}</span>
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" ng-src="{{subject.images.medium}}" alt="subject.title">
+            </div>
+            <div class="media-body">
+                <h2 class="media-heading">{{subject.title}}</h2>
+                <p>类型：<span>{{subject.genres.join('、')}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>上映年份：{{subject.year}}</span></p>
+                <p>导演：<span ng-repeat="director in subject.directors">{{director.name + ($last ? '' : '、')}}</span></p>
+                <p>主演：<span ng-repeat="cast in subject.casts">{{cast.name+ ($last ? '' : '、')}}</span></p>
+            </div>
+        </div>
+    </a>
+</div>
+<p>当前:{{curPage}}/{{totalPage}}页，共{{totalCount}}条记录</p>
+<ul class="pager">
+  <li ng-class="{disabled:curPage<=1}"><a ng-click="changePage(curPage-1)">上一页</a></li>
+  <li ng-class="{disabled:curPage >=totalPage}"><a ng-click="changePage(curPage+1)">下一页</a></li>
+</ul>
+
+
